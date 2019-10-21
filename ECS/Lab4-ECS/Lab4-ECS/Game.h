@@ -1,5 +1,5 @@
 #pragma once
-#include <SFML/Graphics.hpp>
+#include <SDL.h>
 #include "Entity.h"
 #include "Component.h"
 #include "HealthComponent.h"
@@ -8,6 +8,8 @@
 #include "AISystem.h"
 #include "ControlSystem.h"
 #include "RenderSystem.h"
+#include "HealthSystem.h"
+#include "EntityType.h"
 
 class Game
 {
@@ -20,25 +22,35 @@ public:
 private:
 
 	void processEvents();
-	void processKeys(sf::Event t_event);
-	void update(sf::Time t_deltaTime);
+	void update();
 	void render();
+	void cleanup();
+	void setupECS();
+	void setUpPlayer();
+	void setUpAlien();
+	void setUpDog();
+	void setUpCat();
 
-	sf::RenderWindow m_window;
-	bool m_exitGame;
+	SDL_Window* m_window;
+	SDL_Renderer* m_renderer;
+	
+	bool m_isRunning;
 
 	Entity m_player;
 	Entity m_alien;
 	Entity m_dog;
 	Entity m_cat;
 
-	HealthComponent m_healthComponent;
-	PositionComponent m_positionComponent;
-	InputComponent m_inputComponent;
+	Component* m_healthComponent;
+	Component* m_positionComponent;
+	Component* m_inputComponent;
 
 	AISystem m_aiSystem;
 	ControlSystem m_controlSystem;
 	RenderSystem m_renderSystem;
+	HealthSystem m_healthSystem;
+
+	SDL_Keycode currentButtonPressed;
 };
 
 

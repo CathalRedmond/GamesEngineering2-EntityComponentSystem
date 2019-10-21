@@ -5,7 +5,7 @@ class HealthComponent :
 {
 public:
 	HealthComponent() : m_health(100) {}
-	int getHealth() { return m_health; }
+	int getHealth() z{ return m_health; }
 	void setHealth(int t_health) { this->m_health = t_health; }
 private:
 	int m_health;

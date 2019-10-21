@@ -2,18 +2,18 @@
 #include "Component.h"
 #include <vector>
 
-using Components = std::vector<Component>;
-using Entities = std::vector<Entity>;
-
 class Entity
 {
-	int m_id;
 public:
 	Entity() {};
-	void addComponent(Component t_component) { m_components.push_back(t_component); }
-	void remove(Component t_component) {};
-	Components getComponents() { return m_components; }
+	Entity(int t_id) : m_id{ t_id } {};
+	void addComponent(Component* t_component) { m_components.push_back(t_component); }
+	void remove(Component* t_component) {};
+	std::vector<Component*> getComponents() { return m_components; }
+	void setId(int t_id);
+	int getId();
 private:
-	Components m_components;
+	std::vector<Component*> m_components;
+	int m_id;
 };
 
